@@ -5,14 +5,17 @@ import {
 } from 'react-router-dom'
 
 import Home from './pages/Home'
+import TemplateDefault from './templates/Default'
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route path='/' ><Home /> </Route>
-      </Switch>
-    </Router>
+    <TemplateDefault>
+      <Router>
+        <Switch>
+          <Route path='/' ><Home /> </Route>
+        </Switch>
+      </Router>
+    </TemplateDefault>
   )
 }
 
