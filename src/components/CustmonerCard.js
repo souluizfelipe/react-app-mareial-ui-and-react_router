@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import { makeStyles } from '@material-ui/core/styles';
 import { 
   IconButton, 
@@ -21,11 +22,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CustomerCard({ name, lastName, avatar, email }) {
+function CustomerCard({ name, lastName, avatar, email, className }) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classNames(className)}>
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar} src={avatar}>

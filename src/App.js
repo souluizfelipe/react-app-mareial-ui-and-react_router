@@ -7,6 +7,7 @@ import {
 import Home from './pages/Home'
 import Customers from './pages/Customers'
 import TemplateDefault from './templates/Default'
+import TemplatePage from './templates/Page.js'
 
 function App() {
   return (
@@ -14,10 +15,10 @@ function App() {
       <Router>
         <Switch>
           <Route path='/customers' >
-            <Customers />
+            <TemplatePage title="Customers" Component={Customers} />
           </Route>
           <Route path='/' >
-            <Home />
+            <TemplatePage title="Home is here!" Component={Home} />
           </Route>
         </Switch>
       </Router>
