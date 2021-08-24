@@ -4,7 +4,9 @@ const useStyles = makeStyles(() => ({
   title: {
     flexGrow: 1,
   },
-
+  list: {
+    width: 250
+  }
 }))
 
 export default useStyles
