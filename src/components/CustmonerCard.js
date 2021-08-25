@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import classNames from 'classnames'
 import { makeStyles } from '@material-ui/core/styles';
 import { 
@@ -9,6 +11,7 @@ import {
 } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import ModalConfirm from './ModalConfirm';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -25,26 +28,51 @@ const useStyles = makeStyles((theme) => ({
 function CustomerCard({ name, lastName, avatar, email, className }) {
   const classes = useStyles();
 
+  const [ openModal, setOpenModal ] = useState(false)
+
+  const handleToggleModalOpen = () => {
+    setOpenModal(!openModal)
+  }
+
+  const handleDeleteIconClick = () => {
+    handleToggleModalOpen()
+  }
+
+  const onRemoveCustomer = () => {
+    alert('del')
+    
+  }
+  
+
   return (
-    <Card className={classNames(className)}>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar} src={avatar}>
-            R
-          </Avatar>
-        }
-        title={`${name} ${lastName}`}
-        subheader={email}
+    <>
+      <Card className={classNames(className)}>
+        <CardHeader
+          avatar={
+            <Avatar aria-label="recipe" className={classes.avatar} src={avatar}>
+              R
+            </Avatar>
+          }
+          title={`${name} ${lastName}`}
+          subheader={email}
+          />
+        <CardActions disableSpacing>
+          <IconButton aria-label="edit-customer">
+            <EditIcon />
+          </IconButton>
+          <IconButton aria-label="delete-customer">
+            <DeleteIcon onClick={handleDeleteIconClick} />
+          </IconButton>
+        </CardActions>
+      </Card>
+      <ModalConfirm 
+        open={openModal}
+        onClose={handleToggleModalOpen}
+        onConfirm={onRemoveCustomer}
+        title="Are you sure you want to delete this customer?"
+        message="This action is irrevesible"
       />
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <EditIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <DeleteIcon />
-        </IconButton>
-      </CardActions>
-    </Card>
+    </>
   );
 }
 
