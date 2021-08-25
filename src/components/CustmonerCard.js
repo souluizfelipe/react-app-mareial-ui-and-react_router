@@ -25,7 +25,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CustomerCard({ name, lastName, avatar, email, className }) {
+function CustomerCard({ 
+  id,
+  name,
+  lastName, 
+  avatar, 
+  email, 
+  className, 
+  removeCustomer,
+  }) {
   const classes = useStyles();
 
   const [ openModal, setOpenModal ] = useState(false)
@@ -38,9 +46,9 @@ function CustomerCard({ name, lastName, avatar, email, className }) {
     handleToggleModalOpen()
   }
 
-  const onRemoveCustomer = () => {
-    alert('del')
-    
+  const onRemoveCustomer = (id) => {
+    removeCustomer(id)    
+    handleToggleModalOpen()
   }
   
 
