@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import CustomerCard from '../components/CustmonerCard';
+import CustomerCard from '../../components/CustmonerCard';
 import { Grid, makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({

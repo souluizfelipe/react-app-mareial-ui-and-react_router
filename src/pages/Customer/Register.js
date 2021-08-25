@@ -5,21 +5,12 @@ import { useHistory } from 'react-router'
 import {
   TextField, 
   Button, 
-  makeStyles,
   CircularProgress 
 } from "@material-ui/core"
 
-import Toasty from '../components/Toasty'
+import Toasty from '../../components/Toasty'
 
-const useStyles = makeStyles((theme) => ({
-  inputWrapper: {
-    margin: theme.spacing(2),
-  },
-  input: {
-    width: '100%',
-    maxWidth: 600,
-  },
-}))
+import useStyles from './Customers.styles'
 
 const CustomerRegister = () =>  {
   const classes = useStyles()
