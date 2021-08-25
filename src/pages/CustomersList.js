@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Customers = () => {
+const CustomersList = () => {
   const classes = useStyles()
 
   const [ customers, setCustomers ] = useState([]);
@@ -53,4 +53,4 @@ const Customers = () => {
   )
 }
 
-export default Customers
+export default CustomersList

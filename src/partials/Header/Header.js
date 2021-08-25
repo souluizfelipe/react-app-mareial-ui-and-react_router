@@ -17,6 +17,7 @@ import {
 import MenuIcon from '@material-ui/icons/Menu'
 import HomeIcon from '@material-ui/icons/Home'
 import PeopleIcon from '@material-ui/icons/People'
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 import useStyles from './Header.styles'
 
@@ -61,6 +62,12 @@ const Header = () => {
               <PeopleIcon />
             </ListItemIcon>
             <ListItemText primary="Customers" />
+          </ListItem>
+          <ListItem button onClick={() => handlePageChange('/customers/add')}>
+            <ListItemIcon> 
+              <PersonAddIcon />
+            </ListItemIcon>
+            <ListItemText primary="Customers Register" />
           </ListItem>
         </List>
       </Drawer>
