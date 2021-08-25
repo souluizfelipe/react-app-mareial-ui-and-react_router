@@ -5,9 +5,11 @@ import { useHistory } from 'react-router'
 import {
   TextField, 
   Button, 
-  makeStyles 
+  makeStyles,
+  CircularProgress 
 } from "@material-ui/core"
 
+import Toasty from '../components/Toasty'
 
 const useStyles = makeStyles((theme) => ({
   inputWrapper: {
@@ -22,6 +24,14 @@ const useStyles = makeStyles((theme) => ({
 const CustomerRegister = () =>  {
   const classes = useStyles()
   const history = useHistory()
+
+  const [ isLoading, setIsLoading ] = useState(true)
+
+  const [ toasty, setToasty ] = useState({
+    open: false,
+    message: '',
+    severity: '',
+  }) 
 
   const [ form, setForm ] = useState({
     name: {
@@ -47,18 +57,18 @@ const CustomerRegister = () =>  {
   } 
 
   const hadleRegisterButton = () => {
+    setIsLoading(false)
+
     let hasError = false
     let newFormState = {
       ...form,
     }
-
 
     if(!form.name.value) {
       hasError = true
       newFormState.name = {
         value: form.name.value, 
         error: true,
-        helperText: 'Invalid entry',
       }
     }
     
@@ -67,22 +77,35 @@ const CustomerRegister = () =>  {
       newFormState.job = {
         value: form.job.value,
         error: true,
-        helperText: 'Invalid entry',
       }
-
     }
     
     if(hasError){
+      setToasty({
+        open: true,
+        message: 'Something is wrong, try looking in to it',
+        severity: 'error',
+      })
+
       return setForm(newFormState)
     }
 
     axios.post('https://reqres.in/api/users', {
       name: form.name.value, 
       job:  form.job.value,
-    }).then(res => console.log('ok' ,res))
-    
-    history.push('/customers')
+    }).then(() => {
 
+      setToasty({
+        open: true,
+        message: 'New customer added with success',
+        severity: 'success',
+      })
+      
+    })
+    
+    setTimeout(() => {
+      history.push('/customers')
+    }, 3500)
   }
 
 
@@ -113,14 +136,23 @@ const CustomerRegister = () =>  {
           />
       </div>
       <div className={classes.inputWrapper}>
-        <Button 
-          variant="contained" 
-          color="primary" 
-          onClick={hadleRegisterButton}
-        >
-          Register
-        </Button>
+        {isLoading 
+          ? <Button 
+            variant="contained" 
+            color="primary" 
+            onClick={hadleRegisterButton}
+            >
+             Register
+            </Button>
+          : <CircularProgress />
+        }
       </div>
+      <Toasty
+        open={toasty.open}
+        message={toasty.message}
+        severity={toasty.severity}
+        closing= {() => setToasty({...Toasty, open: false})}
+      />
     </>
   )
 }
