@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function CustomerCard({ 
-  id,
   name,
   lastName, 
   avatar, 
