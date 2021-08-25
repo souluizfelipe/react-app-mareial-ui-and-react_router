@@ -32,6 +32,7 @@ const Header = () => {
 
   const handlePageChange = (route) => {
     history.push(route)
+    handleToggleMenu()
   }
 
   return(
