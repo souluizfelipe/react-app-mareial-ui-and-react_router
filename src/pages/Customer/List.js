@@ -31,6 +31,10 @@ const CustomersList = () => {
       })
   }
 
+  const handleEditCustomer = (id, name, job ) => {
+
+  }
+
   return (
     <>
       <Grid container >
@@ -44,6 +48,7 @@ const CustomersList = () => {
                 avatar={cust.avatar} 
                 className={classes.card}
                 removeCustomer={() => handleRemoveCustomer(cust.id)}
+                editCustomer={() => handleEditCustomer(cust.id, cust.name, cust.job) }
               />
             </Grid >
           )

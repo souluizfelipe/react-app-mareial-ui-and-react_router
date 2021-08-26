@@ -45,11 +45,19 @@ function CustomerCard({
     handleToggleModalOpen()
   }
 
+  const handleEditIconClick = () => {
+    handleToggleModalOpen()
+  }
+
   const onRemoveCustomer = (id) => {
     removeCustomer(id)    
     handleToggleModalOpen()
   }
   
+
+  const onEditCustomer = (id, name, job) => {
+
+  }
 
   return (
     <>
@@ -65,7 +73,7 @@ function CustomerCard({
           />
         <CardActions disableSpacing>
           <IconButton aria-label="edit-customer">
-            <EditIcon />
+            <EditIcon onClick={handleEditIconClick} />
           </IconButton>
           <IconButton aria-label="delete-customer">
             <DeleteIcon onClick={handleDeleteIconClick} />
@@ -79,6 +87,7 @@ function CustomerCard({
         title="Are you sure you want to delete this customer?"
         message="This action is irrevesible"
       />
+     
     </>
   );
 }
